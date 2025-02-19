@@ -586,8 +586,8 @@ class MASRTrainer(object):
                     self.__save_checkpoint(save_model_path=save_model_path, epoch_id=epoch_id,
                                            error_rate=self.eval_error_result, test_loss=self.eval_loss, best_model=True)
                 # 保存模型
-                self.__save_checkpoint(save_model_path=save_model_path, epoch_id=epoch_id,
-                                       error_rate=self.eval_error_result, test_loss=self.eval_loss)
+                #self.__save_checkpoint(save_model_path=save_model_path, epoch_id=epoch_id,
+                #                       error_rate=self.eval_error_result, test_loss=self.eval_loss)
 
     def evaluate(self, resume_model='models/conformer_streaming_fbank/best_model/', display_result=False):
         """
