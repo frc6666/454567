@@ -24,8 +24,16 @@ if int(os.environ.get('LOCAL_RANK', 0)) == 0 and args.verbose:
 # 获取训练器
 trainer = MASRTrainer(configs=args.configs, use_gpu=args.use_gpu)
 
-trainer.train(save_model_path=args.save_model_path,
-              resume_model=args.resume_model,
-              pretrained_model=args.pretrained_model,
-              augment_conf_path=args.augment_conf_path,
-              save_interval=args.save_interval)
+# 假设训练总轮数已知
+num_epochs = 101
+for epoch in range(num_epochs):
+    if epoch % args.save_interval == 0:
+        # 每到保存间隔时，调用保存模型的方法
+        trainer.save_model(args.save_model_path, epoch)
+    # 调用 train 方法进行单轮训练
+    # 这里需要根据 MASRTrainer 类的实际情况修改 train 方法的调用逻辑
+    trainer.train(save_model_path=args.save_model_path,
+                  resume_model=args.resume_model,
+                  pretrained_model=args.pretrained_model,
+                  augment_conf_path=args.augment_conf_path,
+                  num_epochs=100)  # 假设 train 方法支持 num_epochs 参数，这里设置为 1 进行单轮训练
